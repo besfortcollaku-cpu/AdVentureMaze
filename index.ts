@@ -7,7 +7,15 @@ import cors from "cors";
 import { approvePiPayment, completePiPayment } from "./pi";
 
 const app = express();
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log("Backend running on", PORT));
+app.get("/health", (_req, res) => {
+  res.status(200).send("ok");
+});
 
+app.get("/", (_req, res) => {
+  res.send("backend up");
+})
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "OPTIONS"],
