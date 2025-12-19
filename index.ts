@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-dotenv.config();
+
+import "dotenv/config";
 
 import express from "express";
 import cors from "cors";
@@ -7,8 +7,8 @@ import cors from "cors";
 import { approvePiPayment, completePiPayment } from "./pi";
 
 const app = express();
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log("Backend running on", PORT));
+const PORT = Number(process.env.PORT) || 3001;
+app.listen(PORT, "0.0.0.0", () => console.log("Backend running on", PORT));
 app.get("/health", (_req, res) => {
   res.status(200).send("ok");
 });
